@@ -1,0 +1,37 @@
+CREATE DATABASE HN_service;
+USE HN_service;
+
+CREATE TABLE Student (
+	numstud INT,
+	name varchar(255),
+  	firstname varchar(255),
+  	dateofbirth DATE,
+  	street varchar(255),
+  	postalcod varchar(255),
+  	city varchar(255),
+  	PRIMARY KEY (numstud)
+);
+
+CREATE TABLE Matter (
+	codemat varchar(255),
+  	wording varchar(255),
+  	coef FLOAT,
+  	PRIMARY KEY (codemat)
+);
+
+CREATE TABLE Test (
+	numtest INT,
+  	testdate DATE,
+  	place varchar(255),
+	codemat varchar(255),
+  	PRIMARY KEY (numtest),
+    	FOREIGN KEY (codemat) REFERENCES Matter(codemat)
+);
+
+CREATE TABLE Notation (
+	numstud INT,
+	numtest INT,
+	score FLOAT,
+        FOREIGN KEY (numstud) REFERENCES Student(numstud),
+	FOREIGN KEY (numtest) REFERENCES Test(numtest)
+);
